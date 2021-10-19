@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:07:45 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/14 22:47:57 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/19 14:24:07 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ void					show_alloc_mem(void);
 **	Handler functions.
 */
 t_block					*get_last_block(t_heap *heap);
+t_block					*match_block(t_heap **heap, void *ptr);
 t_block					*try_fill_allocated_space(size_t size);
 
 t_heap					*get_heap(size_t size);
 t_heap					*mmap_new_area(size_t size);
 
 void					*create_new_block(t_heap *heap, size_t size);
+void					merge_blocks(t_heap *heap, t_block *block);
+void					munmap_heap(t_heap *heap);
 
 #endif

@@ -8,11 +8,11 @@ extern ft_strlen
 ;rdi=s
 ft_putendl:
 	push	rdi
-	call	ft_strlen	;Get string length -> RAX
-	mov     rdi, 1		;fd
-	pop     rsi			;string
-	mov     rdx, rax	;length
-	mov     rax, 1		;write
+	call	ft_strlen WRT ..plt	;Get string length -> RAX
+	mov     rdi, 1				;fd
+	pop     rsi					;string
+	mov     rdx, rax			;length
+	mov     rax, 1				;write
 	syscall
 	mov		rax, 1
 	mov		rsi, endl

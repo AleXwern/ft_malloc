@@ -1,3 +1,5 @@
+default rel
+
 section	.text
    global ft_puthexln
 
@@ -11,7 +13,7 @@ ft_puthexln:
 hexloop:
 	mov		rsi, rdi
 	and		rsi, 15
-	movzx	eax, byte [hex + rsi]
+	movzx	eax, byte [rel hex + rsi]
 	mov		byte [rsp + rcx], al
 	shr		rdi, 4
 	dec		rcx
@@ -28,5 +30,5 @@ hexloop:
 	add		rsp, 40
 	ret
 
-section .data
+section .rodata
 	hex	db "0123456789abcdef"

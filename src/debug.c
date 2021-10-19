@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 22:08:08 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/14 23:34:31 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/19 14:25:37 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,42 @@
 */
 void		show_alloc_mem(void)
 {
-	ft_putnbrln(g_heap->block_count);
-	ft_putnbrln(g_heap->free_size);
-	ft_putnbrln(g_heap->total_size);
-	ft_putnbrln(g_heap->total_size - g_heap->free_size - (g_heap->block_count * sizeof (t_block)));
+	t_heap	*heap;
+	t_block	*block;
+	size_t	i;
+
+	heap = g_heap;
+	ft_putstr("Global heapdata: ");
+	ft_putnbrln(g_heap);
+	while (heap)
+	{
+		ft_putstr("-> Heap at ");
+		ft_putnbrln(heap);
+		ft_putstr("Prev: ");
+		ft_putnbrln(heap->prev);
+		ft_putstr("Next: ");
+		ft_putnbrln(heap->next);
+		ft_putstr("Total size: ");
+		ft_putnbrln(heap->total_size);
+		ft_putstr("Free size: ");
+		ft_putnbrln(heap->free_size);
+		ft_putstr("Blocks: ");
+		ft_putnbrln(heap->block_count);
+		block = ((void*)heap) + sizeof(t_heap);
+		while (block)
+		{
+			ft_putstr("\n--> Block at ");
+			ft_putnbrln(block);
+			ft_putstr("-Prev: ");
+			ft_putnbrln(block->prev);
+			ft_putstr("-Next: ");
+			ft_putnbrln(block->next);
+			ft_putstr("-Total size: ");
+			ft_putnbrln(block->data_size);
+			ft_putstr("-Free: ");
+			ft_putnbrln(block->free);
+			block = block->next;
+		}
+		heap = heap->next;
+	}
 }

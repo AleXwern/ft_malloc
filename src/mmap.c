@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 20:11:44 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/14 22:02:24 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/19 14:24:07 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ t_heap		*mmap_new_area(size_t size)
 	heap->next = NULL;
 	heap->total_size = heap->free_size;
 	return (heap);
+}
+
+void		munmap_heap(t_heap *heap)
+{
+	if (heap->prev)
+		heap->prev->next = heap->next;
+	else
+		g_heap = g_heap->next;
+	if (heap->next)
+		heap->next->prev = heap->prev;
+	if (!heap->next && !heap->prev)
+		g_heap = NULL;
+	munmap(heap, heap->total_size + sizeof(t_heap));
 }

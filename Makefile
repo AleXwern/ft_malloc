@@ -6,7 +6,7 @@
 #    By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 13:14:55 by AleXwern          #+#    #+#              #
-#    Updated: 2021/10/14 23:31:11 by AleXwern         ###   ########.fr        #
+#    Updated: 2021/10/18 13:28:09 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLUDES		= -I ./include/ -I ./libft/
 LIBFT			= libft/libft.a
 LIBFTASM		= libft/libft_asm.a
 FLAG			= -Wall -Wextra -Werror
-SRC				= block_search.c block.c free.c heap.c init.c malloc.c mmap.c \
+SRC				= block_manip.c block_search.c block.c free.c heap.c init.c malloc.c mmap.c \
 					debug.c
 OBJ				= $(addprefix ./obj/,$(SRC:.c=.o))
 
@@ -44,11 +44,11 @@ $(NAME): $(LIBFT) $(OBJ)
 	ln -sf $(NAME) libft_malloc.so
 
 asm: $(LIBFTASM) $(OBJ)
-	gcc -no-pie $(FLAG) -shared -o $(NAME) $(INCLUDES) $(OBJ) $(LIBFTASM)
+	gcc -no-pie -fPIC $(FLAG) -shared -o $(NAME) $(INCLUDES) $(OBJ) $(LIBFTASM)
 	ln -sf $(NAME) libft_malloc.so
 
 demo:
-	gcc -o demo $(INCLUDES) test/main.c libft_malloc.so $(LIBFTASM)
+	gcc -no-pie -fPIC -o demo $(INCLUDES) test/main.c libft_malloc.so $(LIBFTASM)
 
 clean:
 	@echo "Removing sources."

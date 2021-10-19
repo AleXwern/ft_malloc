@@ -8,7 +8,7 @@ extern ft_strlen
 ;rdi=s
 ft_putstr:
 	push	rdi
-	call	ft_strlen	;Get string length -> RAX
+	call	ft_strlen WRT ..plt	;Get string length -> RAX
 	mov     rdi, 1		;fd
 	pop     rsi			;string
 	mov     rdx, rax	;length
