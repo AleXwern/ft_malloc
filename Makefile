@@ -6,7 +6,7 @@
 #    By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 13:14:55 by AleXwern          #+#    #+#              #
-#    Updated: 2021/10/18 13:28:09 by AleXwern         ###   ########.fr        #
+#    Updated: 2021/10/22 16:24:04 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ INCLUDES		= -I ./include/ -I ./libft/
 LIBFT			= libft/libft.a
 LIBFTASM		= libft/libft_asm.a
 FLAG			= -Wall -Wextra -Werror
-SRC				= block_manip.c block_search.c block.c free.c heap.c init.c malloc.c mmap.c \
-					debug.c
+SRC				= block_manip.c block_search.c block.c calloc.c debug.c free.c \
+					heap.c init.c malloc.c mmap.c realloc.c
 OBJ				= $(addprefix ./obj/,$(SRC:.c=.o))
 
 .PHONY:

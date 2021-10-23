@@ -24,7 +24,7 @@ memmove_loop:
 	inc		rcx
 	jmp		memmove_loop
 memcpy_call:
-	call	ft_memcpy
+	call	ft_memcpy WRT ..plt
 return:
 	mov		rax, rdi
 	ret

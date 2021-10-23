@@ -4,7 +4,8 @@ section	.text
    global ft_puthexln
 
 ;void		ft_puthexln(unsigned long num)
-;Writes hex presentation of maximum of 64-bits wide integer to standard output followed by a newline.
+;Writes hex presentation of maximum of 64-bits wide integer to standard output
+;followed by a newline.
 ;rdi=num
 ft_puthexln:
 	mov		rcx, 19

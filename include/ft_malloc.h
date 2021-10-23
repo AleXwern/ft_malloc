@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:07:45 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/19 14:24:07 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/22 16:25:09 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,30 @@ extern t_heap			*g_heap;
 /*
 **	ft_malloc functions.
 */
+void					*calloc(size_t nmemb, size_t size);
 void					free(void *ptr);
 void					*malloc(size_t size);
 void					*realloc(void *ptr, size_t size);
 void					show_alloc_mem(void);
+
+void					free_base(void *ptr);
+void					*malloc_base(size_t size);
 
 /*
 **	Handler functions.
 */
 t_block					*get_last_block(t_heap *heap);
 t_block					*match_block(t_heap **heap, void *ptr);
+t_block					*try_extend_block(t_heap *heap, t_block *block, size_t aimsize);
 t_block					*try_fill_allocated_space(size_t size);
 
 t_heap					*get_heap(size_t size);
 t_heap					*mmap_new_area(size_t size);
 
 void					*create_new_block(t_heap *heap, size_t size);
+void					error_out(void);
 void					merge_blocks(t_heap *heap, t_block *block);
 void					munmap_heap(t_heap *heap);
+void					shrink_block(t_heap *heap, t_block *block, size_t size);
 
 #endif

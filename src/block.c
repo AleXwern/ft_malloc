@@ -6,22 +6,32 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:11:48 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/19 14:02:04 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/23 16:09:09 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
+/*
+**	Following 3 functions are part of the first step of malloc.
+**	Malloc quickly allocates memory by pre-allocating a bigger chunk. Here we
+**	try to locate one of those chunks and then split it into smaller blocks
+**	which we return a pointer to. Vast majority of malloc calls should only
+**	go through this step and this step is way faster than calling mmap.
+*/
+
 static t_block		*get_free_block(t_heap **heap, size_t size)
 {
 	t_heap			*heap_needle;
 	t_block			*block_needle;
+	t_uint8			type;
 	
 	heap_needle = g_heap;
+	type = (size > HEAP_TINY) + (size > HEAP_SMALL);
 	while (heap_needle)
 	{
 		block_needle = (void*)heap_needle + sizeof(t_heap);
-		while (block_needle)
+		while (block_needle && type == heap_needle->group)
 		{
 			if (block_needle->free &&
 				block_needle->data_size >= (size + sizeof(t_block)))
@@ -62,6 +72,10 @@ t_block				*try_fill_allocated_space(size_t size)
 		set_new_block(heap, block, size);
 	return (block);
 }
+
+/*
+**	
+*/
 
 t_block				*create_null_block(t_block *block, size_t size)
 {

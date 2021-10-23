@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:09:56 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/14 22:44:42 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:47:42 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,15 @@
 **	The allocations are also always rounded up to the next word to fill MacOS standard. You ask for 1 byte and you get 16.
 */
 
-static inline void	*malloc_base(size_t size)
+/*
+**	While doing realloc I noticed I had to split the base malloc and free into 2 parts.
+**	Some conditions in realloc act as straight malloc or free and if I want to make
+**	this thread safe (the first thing that happens always is locking mutex) I can't
+**	call a function that handles locking mutex as I would get a deadlock.
+**	In a sense I could do some conditions easier but I also lost some optimization
+**	potential which is annoying.
+*/
+void				*malloc_base(size_t size)
 {
 	void 			*ptr;
 	t_heap			*heap;

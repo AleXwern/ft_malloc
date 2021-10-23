@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 20:11:44 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/19 14:24:07 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/23 16:18:02 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_heap		*mmap_new_area(size_t size)
 	heap->prev = NULL;
 	heap->next = NULL;
 	heap->total_size = heap->free_size;
+	heap->group = (realsize > HEAP_TINY) + (realsize > HEAP_SMALL);
 	return (heap);
 }
 
