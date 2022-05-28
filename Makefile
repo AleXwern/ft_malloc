@@ -6,7 +6,7 @@
 #    By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 13:14:55 by AleXwern          #+#    #+#              #
-#    Updated: 2021/10/22 16:24:04 by AleXwern         ###   ########.fr        #
+#    Updated: 2021/11/01 21:30:04 by AleXwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT			= libft/libft.a
 LIBFTASM		= libft/libft_asm.a
 FLAG			= -Wall -Wextra -Werror
 SRC				= block_manip.c block_search.c block.c calloc.c debug.c free.c \
-					heap.c init.c malloc.c mmap.c realloc.c
+					heap.c hexdump.c init.c malloc.c mmap.c realloc.c
 OBJ				= $(addprefix ./obj/,$(SRC:.c=.o))
 
 .PHONY:

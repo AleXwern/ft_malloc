@@ -6,28 +6,26 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 14:32:41 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/23 15:24:16 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/11/01 23:16:28 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
 /*
-**	We can consider few things from malloc.
+**
 */
 
 static inline void		*realloc_base(void *ptr, size_t size)
 {
 	t_block		*block;
 	t_heap		*heap;
-	void		*newptr;
 	
 	size = (size + 15) & ~15;
 	if (!(block = match_block(&heap, ptr)))
 		error_out();
 	if (block->data_size == size)
 		return (ptr);
-	newptr = ptr;
 	if (size < block->data_size)
 		shrink_block(heap, block, size);
 	else
@@ -35,14 +33,16 @@ static inline void		*realloc_base(void *ptr, size_t size)
 		block = try_extend_block(heap, block, size - block->data_size);
 		if (block->data_size < size)
 		{
-			newptr = malloc_base(size);
+			ptr = malloc_base(size);
 			if (block->data_size < size)
 				size = block->data_size;
-			ft_memmove(newptr, block + 1, size);
+			ft_memmove(ptr, block + 1, size);
 			merge_blocks(heap, block);
+			if (!heap->block_count)
+				munmap_heap(heap);
 		}
 	}
-	return (newptr);
+	return (ptr);
 }
 
 void					*realloc(void *ptr, size_t size)

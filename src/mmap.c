@@ -6,13 +6,13 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 20:11:44 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/23 16:18:02 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/11/01 22:20:05 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-size_t		get_real_heapsize(size_t size)
+size_t				get_real_heapsize(size_t size)
 {
 	if (size > HEAP_SMALL)
 		return (size + sizeof(t_heap) + sizeof(t_block));
@@ -21,12 +21,17 @@ size_t		get_real_heapsize(size_t size)
 	return (HEAP_TINY);
 }
 
-t_heap		*mmap_new_area(size_t size)
+t_heap				*mmap_new_area(size_t size)
 {
-	t_heap	*heap;
-	size_t	realsize;
-
+	t_heap			*heap;
+	size_t			realsize;
+	struct rlimit	limit;
+	
 	realsize = get_real_heapsize(size);
+	if (getrlimit(RLIMIT_DATA, &limit))
+		return (NULL);
+	if (realsize > limit.rlim_max)
+		return (NULL);
 	heap = mmap(NULL, realsize, PROT_READ | PROT_WRITE,
 		MAP_ANON | MAP_PRIVATE, -1, 0);
 	if (heap == ((void*)-1))
@@ -40,7 +45,7 @@ t_heap		*mmap_new_area(size_t size)
 	return (heap);
 }
 
-void		munmap_heap(t_heap *heap)
+void				munmap_heap(t_heap *heap)
 {
 	if (heap->prev)
 		heap->prev->next = heap->next;

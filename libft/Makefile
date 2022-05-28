@@ -49,7 +49,8 @@ SRCFILE	= ft_strlen.asm ft_putstr_fd.asm ft_putendl_fd.asm \
 #		These sources wil not be used until I figure out couple bugs.
 CMEM	= ft_memalloc.c ft_memdel.c ft_quadjoin.c ft_realloc.c \
 		ft_splitfree.c ft_strdel.c ft_strdup.c ft_strfjoin.c ft_strsjoin.c \
-		ft_strjoin.c ft_putnbr.c ft_putnbr_fd.c ft_putnbrln.c
+		ft_strjoin.c ft_putnbr.c ft_putnbr_fd.c ft_putnbrln.c \
+		ft_putlongln.c
 SRCEXT	= .asm
 OBJEXT	= .o
 SRC		= $(addprefix ./src/,$(SRCFILE))
@@ -73,7 +74,7 @@ all: $(NAME)
 ./obj_c/%.o:./src_c/%.c
 	@echo "Compiling C source $<"
 	@mkdir -p obj_c
-	@gcc -c $< -o $@ 
+	@gcc -I ./ -c $< -o $@ 
 
 $(NAME): $(OBJ_C)
 	@echo "Compiling Library"

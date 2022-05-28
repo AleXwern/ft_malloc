@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 11:50:15 by anystrom          #+#    #+#             */
-/*   Updated: 2021/10/12 19:38:44 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:50:23 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,13 @@ void	ft_putendl(char const *s);
 void	ft_putendl_fd(const char *s, int fd);
 void	ft_puthex(unsigned long num);
 void	ft_puthexln(unsigned long num);
+void	ft_putlongln(long n);
 void	ft_putnbr(int n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putnbrln(int n);
 void	ft_putstr(char const *s);
 void	ft_putstr_fd(const char *s, int fd);
+void	ft_putulongln(unsigned long n);
 void	*ft_realloc(void *ptr, size_t newlen, size_t oldlen);
 void	ft_splitfree(char **c);
 void	ft_strclr(char *s);

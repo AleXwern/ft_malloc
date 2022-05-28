@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 20:11:48 by AleXwern          #+#    #+#             */
-/*   Updated: 2021/10/23 16:09:09 by AleXwern         ###   ########.fr       */
+/*   Updated: 2021/11/01 23:55:22 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_block		*get_free_block(t_heap **heap, size_t size)
 	t_uint8			type;
 	
 	heap_needle = g_heap;
-	type = (size > HEAP_TINY) + (size > HEAP_SMALL);
+	type = (size > BLOCK_TINY) + (size > BLOCK_SMALL);
 	while (heap_needle)
 	{
 		block_needle = (void*)heap_needle + sizeof(t_heap);
