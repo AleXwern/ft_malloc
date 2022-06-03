@@ -6,7 +6,7 @@
 #    By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/12 13:14:55 by AleXwern          #+#    #+#              #
-#    Updated: 2022/06/03 09:45:14 by alexwern         ###   ########.fr        #
+#    Updated: 2022/06/03 10:27:34 by alexwern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,13 @@ all: $(NAME)
 ./obj/%.o:./src/%.c
 	@echo "Compiling C source $<"
 	@mkdir -p obj
-	@gcc -fPIC -g $(INCLUDES) -c $< -o $@
+	@gcc -no-pie -fPIC -g $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	@make -C ../libft_ASM
 
 $(NAME): $(LIBFT) $(OBJ)
-	@gcc $(FLAG) -shared -o $(NAME) $(INCLUDES) $(OBJ) $(LIBFT)
+	gcc $(FLAG) -shared -o $(NAME) $(INCLUDES) $(OBJ) $(LIBFT)
 	@ln -sf $(NAME) libft_malloc.so
 
 demo:
