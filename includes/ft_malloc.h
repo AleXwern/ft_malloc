@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexwern <alexwern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:07:45 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/06/03 13:05:43 by alexwern         ###   ########.fr       */
+/*   Updated: 2022/06/12 00:48:44 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <sys/resource.h>
 # include <pthread.h>
 //# include <stdlib.h>
-# include "libft_asm.h"
+# include "libft.h"
 
 # define MAGIC_NUMBER		32
 # define ALIGN				16
