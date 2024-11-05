@@ -6,7 +6,7 @@
 /*   By: AleXwern <AleXwern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:07:45 by AleXwern          #+#    #+#             */
-/*   Updated: 2022/06/19 23:15:14 by AleXwern         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:01:28 by AleXwern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ extern "C" {
 # else
 #  define HEAP_TINY			(FT_PAGE_DEFINED * MAGIC_NUMBER)
 #  define HEAP_SMALL		(FT_PAGE_DEFINED * MAGIC_NUMBER * 8)
+# endif
 
+# ifdef NEVER_DEFINED
 #define PROT_READ	0x1		/* Page can be read.  */
 #define PROT_WRITE	0x2		/* Page can be written.  */
 #define PROT_EXEC	0x4		/* Page can be executed.  */
@@ -48,8 +50,8 @@ extern "C" {
 # define MAP_FILE	0
 #  define MAP_ANONYMOUS	0x20		/* Don't use a file.  */
 # define MAP_ANON	MAP_ANONYMOUS
-
 # endif
+
 # define BLOCK_TINY			(HEAP_TINY / 128)
 # define BLOCK_SMALL		(HEAP_SMALL / 128)
 
